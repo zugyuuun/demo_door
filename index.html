@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>スマホで解錠</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<style type="text/css">
+@font-face {
+  font-family: 'NotoSans';
+  src: url('./fonts/NotoSansCJKjp-Black-num.woff');
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  font-family: 'NotoSans';
+  display: table;
+  width: 100%;
+  cursor: pointer;
+}
+body.on {
+  background-color: #ccc;
+}
+#horizontal {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+#status{
+  position: absolute;
+  top: 8%;
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+}
+#btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -63px;
+  margin-top: -86px;
+  width: 127px;
+  height: 172px;
+  background: url('./key.png') no-repeat 0 -172px;
+  background-size: 127px 344px;
+}
+#btn.active {
+  background-position: 0 0;
+}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdn.zugyuuun.com/libs/0.9.0/zgn.js"></script>
+<script src="app.js"></script>
+<script>
+function hideAdBar(){setTimeout("scrollTo(0,1)", 100);}
+$(function() {
+  $('body').on('touchstart mousedown', function(e) {
+    $(e.currentTarget).addClass('on');
+  });
+
+  $('body').on('touchend touchcancel mouseup', function(e) {
+    $(e.currentTarget).removeClass('on');
+  });
+});
+</script>
+<body onLoad="hideAdBar()" onOrientationChange="hideAdBar()">
+<div id="status"></div>
+<div id="btn"></div>
+</body>
+</html>
